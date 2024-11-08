@@ -237,27 +237,48 @@ class LLMAlignment:
 
     def alignment_init(self):
 
-        log.info(f"sending the {len(self.task_questions)} questions on '{self.topic_description}' to source model {self.models_spec['source']['name']}")
-        self.source_model_response = self.source_model_generate_answers_batch()
+        max_retries = 5
+        for trial in range(max_retries):
 
-        p = TargetModelResponse(system_prompt = f"answer questions about '{self.topic_description}' ",
-                                generation_model_response= None)
-        log.info(f"sending the {len(self.task_questions)} questions on '{self.topic_description}' to target model {self.models_spec['target']['name']}")
-        p = self.target_model_generate_answers_batch(target_model_response = p)
+            try:
+                log.info(f"sending the {len(self.task_questions)} questions on '{self.topic_description}' to source model {self.models_spec['source']['name']}")
+                self.source_model_response = self.source_model_generate_answers_batch()
 
-        self.evaluate_target_response(p)
-        self.target_model_response_history.append(p)
+                p = TargetModelResponse(system_prompt = f"answer questions about '{self.topic_description}' ",
+                                        generation_model_response= None)
+                log.info(f"sending the {len(self.task_questions)} questions on '{self.topic_description}' to target model {self.models_spec['target']['name']}")
+                p = self.target_model_generate_answers_batch(target_model_response = p)
+
+                self.evaluate_target_response(p)
+                self.target_model_response_history.append(p)
+                return
+            except Exception as e:
+                if trial == max_retries - 1:
+                    raise e
+                else:
+                    log.error(f'could not parse model response. trying again')
+
 
 
     def alignment_iteration(self):
-        log.info('generating new prompt')
-        p = self.generate_system_prompt_for_target_model()
-        log.info(f"prompt generated '{p.system_prompt}'")
-        log.info(f"sending the {len(self.task_questions)} questions on '{self.topic_description}' to target model {self.models_spec['target']['name']}")
-        p = self.target_model_generate_answers_batch(target_model_response = p)
+        max_retries = 5
+        for trial in range(max_retries):
 
-        self.evaluate_target_response(p)
-        self.target_model_response_history.append(p)
+            try:
+                log.info('generating new prompt')
+                p = self.generate_system_prompt_for_target_model()
+                log.info(f"prompt generated '{p.system_prompt}'")
+                log.info(f"sending the {len(self.task_questions)} questions on '{self.topic_description}' to target model {self.models_spec['target']['name']}")
+                p = self.target_model_generate_answers_batch(target_model_response = p)
+
+                self.evaluate_target_response(p)
+                self.target_model_response_history.append(p)
+                return
+            except Exception as e:
+                if trial == max_retries - 1:
+                    raise e
+                else:
+                    log.error(f'could not parse model response. trying again')
 
 
     def history_summary(self):
