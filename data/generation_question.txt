@@ -38,9 +38,9 @@
         - Ensure that you analyse the prompts with a high score and reuse the patterns that worked in the past
         - Ensure that you analyse the prompts with a low score and avoid the patterns that didn't worked in the past
         - Analyse the example answers and understand the differences between the answers from LLM-TARGET and LLM-SOURCE in style, concept coverage, argumentation, structure and facts grounding
+        - Include explicit instructions on style, formatting structure, what ideas to cover and what facts to use.
         - Think out loud before creating the prompt. Describe what has worked in the past and what hasn't. Only then create the new prompt.
         - Use all available information like prompt length, formal/informal use of language, facts, style, structure, argumentation, etc for your analysis.
-        - If the prompts with a high score are very similar try something radically different.
         - Be creative, try out different ways of prompting the model. You may even come up with hypothetical scenarios that might improve the accuracy.
         - You are generating system prompts. This means that there should be no placeholders in the prompt, as they cannot be filled at runtime. Instead focus on general instructions that will help the model to solve the task.
         - Write your new prompt in four square brackets like this [[[[NEW SYSTEM PROMPT]]]]. Use only plain text for the prompt text and do not add any markdown (i.e. no hashtags, backticks, quotes, etc).
