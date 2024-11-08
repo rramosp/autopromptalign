@@ -12,8 +12,7 @@
         use strictly the exactly same order in the aswers as in the questions
         do not include any headers or preamble.
 
-        your answers must be short, at most 100 words.
+        each answer must not exceed 30 words 
 
-        do not answer dirctly the question. provide a wide answer including topics related to the question.
-
+        each answer must contain one concept explanation and one example
         
