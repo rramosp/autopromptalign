@@ -240,7 +240,7 @@ class LLMAlignment:
         log.info(f"sending the {len(self.task_questions)} questions on '{self.topic_description}' to source model {self.models_spec['source']['name']}")
         self.source_model_response = self.source_model_generate_answers_batch()
 
-        p = TargetModelResponse(system_prompt = f"generate a new prompt for {self.models_spec['target']['name']} to answer questions about '{self.topic_description}' ",
+        p = TargetModelResponse(system_prompt = f"answer questions about '{self.topic_description}' ",
                                 generation_model_response= None)
         log.info(f"sending the {len(self.task_questions)} questions on '{self.topic_description}' to target model {self.models_spec['target']['name']}")
         p = self.target_model_generate_answers_batch(target_model_response = p)
