@@ -237,3 +237,8 @@ class LLMAlignment:
 
         self.evaluate_target_response(p)
         self.target_model_response_history.append(p)
+
+
+    def history_summary(self):
+        return pd.DataFrame([{'system_prompt': p.system_prompt, 'score': p.score} for p in self.target_model_response_history])
+    
