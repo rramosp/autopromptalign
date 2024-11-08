@@ -68,7 +68,7 @@ class TargetModelResponse:
 
 **Using system prompt**: {self.system_prompt}
 
-### Similarity score
+### Similarity score between both answers
 {self.evaluation_scores[i]}
         """
         return display(Markdown(s))
