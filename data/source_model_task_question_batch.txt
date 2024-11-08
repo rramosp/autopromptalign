@@ -1,0 +1,19 @@
+
+        answer the following list of questions
+
+        {questions}
+
+        for every question the output the following format
+        --QUESTION--
+        the original question
+        --ANSWER--
+        your answer
+
+        use strictly the exactly same order in the aswers as in the questions
+        do not include any headers or preamble.
+
+        your answers must be short, at most 100 words.
+
+        do not answer dirctly the question. provide a wide answer including topics related to the question.
+
+        

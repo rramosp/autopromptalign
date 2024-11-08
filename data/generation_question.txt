@@ -1,0 +1,49 @@
+
+        <EXPLANATION>
+        I have two large language models (LLMs) to answer questions about {topic_description}:
+
+        - LLM-SOURCE is '{source_model_name}'
+        - LLM-TARGET is '{target_model_name}'
+
+        I have some system prompts for LLM-TARGET along with their corresponding scores.
+        The system promps are used by LLM-TARGET to answer questions.
+        LLM-SOURCE uses no system prompt to answer the same questions
+
+        For each system prompt I have one example of the answer given by LLM-TARGET and the corresponding answer given by LLM-SOURCE which does not use a system prompt
+
+        The scores represent how similar the answers from LLM-SOURCE were to the answers of LLM-TARGET when using that system prompt.
+
+        The system prompts are arranged in ascending order based on their scores, where higher score indicate better quality.
+
+        </EXPLANATION>
+
+        <PROMPTS>
+        {prompt_scores}
+        </PROMPTS>
+
+
+
+
+        <TASK>
+        Write a new system prompt that will achieve make the answers by LLM-TARGET identical to the ones by LLM-SOURCE in concepts, length, ground, style, etc.
+        
+        Provide only one new system prompt.
+
+        If you can't, then the new system prompt should be 'Do your best to answer the following question'
+        </TASK>
+
+
+        <RULES>
+        - It is very important that the new prompt is distinct from ALL the old ones!
+        - Ensure that you analyse the prompts with a high score and reuse the patterns that worked in the past
+        - Ensure that you analyse the prompts with a low score and avoid the patterns that didn't worked in the past
+        - Analyse the example answers and understand the differences between the answers from LLM-TARGET and LLM-SOURCE in style, concept coverage, argumentation, structure and facts grounding
+        - Think out loud before creating the prompt. Describe what has worked in the past and what hasn't. Only then create the new prompt.
+        - Use all available information like prompt length, formal/informal use of language, facts, style, structure, argumentation, etc for your analysis.
+        - If the prompts with a high score are very similar try something radically different.
+        - Be creative, try out different ways of prompting the model. You may even come up with hypothetical scenarios that might improve the accuracy.
+        - You are generating system prompts. This means that there should be no placeholders in the prompt, as they cannot be filled at runtime. Instead focus on general instructions that will help the model to solve the task.
+        - Write your new prompt in four square brackets like this [[[[NEW SYSTEM PROMPT]]]]. Use only plain text for the prompt text and do not add any markdown (i.e. no hashtags, backticks, quotes, etc).
+
+        </RULES>
+        

@@ -1,0 +1,6 @@
+
+        generate {number_of_questions} questions on any topic on {topic_description}.
+        mark the beginning of each question with the text string --QUESTION--
+        do not produce any header or introductory sentence. just list the questions.
+        there cannot be repeated questions or questions that require the same answer
+        
