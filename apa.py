@@ -48,7 +48,27 @@ class TargetModelResponse:
           </SYSTEM_PROMPT>
       '''
       return s
-    
+
+    def show_any_question(self, task_questions, source_model_response):
+
+        i = np.random.randint(len(self.answers))
+
+        s = f"""
+### Question
+
+{task_questions[i]}
+
+### Source model answer
+
+{source_model_response.answers[i]}
+
+### Target model system prompt
+{self.system_prompt}
+
+### Target model answer
+{self.answers[i]}
+        """
+        return display(Markdown(s)) 
 
 class SourceModelResponse:
     def __init__(self, response):
