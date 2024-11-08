@@ -63,13 +63,16 @@ class TargetModelResponse:
 
 {source_model_response.answers[i]}
 
-### Target model system prompt
-{self.system_prompt}
-
 ### Target model answer
 {self.answers[i]}
+
+**Using system prompt**: {self.system_prompt}
+
+### Similarity score
+{self.evaluation_scores[i]}
         """
-        return display(Markdown(s)) 
+        return display(Markdown(s))
+
 
 class SourceModelResponse:
     def __init__(self, response):
